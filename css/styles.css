@@ -8,9 +8,8 @@
   --ft-poppins: "Poppins", sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
-
+::-webkit-scrollbar {
+  display: none;
 }
 
 .btn-purple {

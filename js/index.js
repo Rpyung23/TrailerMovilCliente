@@ -15,7 +15,7 @@ sign_in_btn.addEventListener("click", () => {
 
 formIniciarSesion.addEventListener('submit', async e => {
    e.preventDefault();
-   const url = "https://roman-company.com/TrailerMovilApiRest/view/login.php";
+   const url = "https://trailer.roman-company.com/TrailerMovilApiRest/view/login.php";
    const data = {
       codigo: "cliente",
       email: formIniciarSesion.email_login.value,
@@ -40,6 +40,7 @@ formIniciarSesion.addEventListener('submit', async e => {
          )
       }
    } catch (error) {
+      console.log("ERROR INDEX.JS")
       console.log(error);
    } finally {
       formIniciarSesion.reset();
@@ -67,7 +68,7 @@ async function sendDataRest(data) {
 }
 
 function clientRegister(data) {
-   url = "https://roman-company.com/TrailerMovilApiRest/view/cliente.php";
+   url = "https://trailer.roman-company.com/TrailerMovilApiRest/view/cliente.php";
    fetch(url, {
       method: 'POST',
       body: JSON.stringify(data),

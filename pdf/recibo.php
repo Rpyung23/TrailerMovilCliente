@@ -8,7 +8,7 @@ if (isset($_GET["f"])) {
     $datos = json_decode($datos, true);
 
     // datos del recibo 
-    $data = file_get_contents("https://roman-company.com/TrailerMovilApiRest/view/compras.php/detalle?factura=" . $datos[0] . "&paypal=" . $datos[1] . "");
+    $data = file_get_contents("https://trailer.roman-company.com/TrailerMovilApiRest/view/compras.php/detalle?factura=" . $datos[0] . "&paypal=" . $datos[1] . "");
     $recibos = json_decode($data, true)['datos'];
     $recibos = ($recibos == null) ? [] : $recibos;
 } else {
@@ -117,7 +117,7 @@ $total = 0;
                         <tr>
                             <td class="p-th"><?php echo $recibo['cantidad'] ?></td>
                             <td class="p-th pl-th"><?php echo $recibo['detalle'] ?></td>
-                            <td class="p-th pl-th">$ <?php echo $recibo['precioUni'] ?></td>
+                            <td class="p-th pl-th">$ <?php echo $recibo['precioTU'] ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -125,7 +125,7 @@ $total = 0;
             <p>-------------------------------------</p>
             <div class="contenedor-total">
                 <p class="texto-total">Total:</p>
-                <p class="valor-total">$ <?php echo $total; ?></p>
+                <p class="valor-total">$ <?php echo number_format($total,2); ?></p>
             </div>
             <p id="last-node">-------------------------------------</p>
     </div>

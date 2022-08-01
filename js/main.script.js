@@ -113,7 +113,7 @@ function getDataProductCard() {
 }
 
 function sendRequestAddCart(data, btnAddCart) {
-    const url = "https://roman-company.com/TrailerMovilApiRest/view/cliente_menu_tem.php";
+    const url = "https://trailer.roman-company.com/TrailerMovilApiRest/view/cliente_menu_tem.php";
     btnAddCart.setAttribute('disabled', "true");
     //invocamos a la api
     fetch(url, {
@@ -140,7 +140,7 @@ function sendRequestAddCart(data, btnAddCart) {
 }
 
 function getItemsCartAPI() {
-    const url = `https://roman-company.com/TrailerMovilApiRest/view/cliente_menu_tem.php?email=${user_credencials.email}`;
+    const url = `https://trailer.roman-company.com/TrailerMovilApiRest/view/cliente_menu_tem.php?email=${user_credencials.email}`;
     fetch(url)
         .then(response => response.json())
         .then(({ datos }) => {

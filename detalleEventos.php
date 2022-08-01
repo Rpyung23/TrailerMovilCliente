@@ -3,7 +3,7 @@ include_once 'layout/header.php';
 include_once 'layout/navegacion.php';
 
 $id =  base64_decode($_GET['id']);
-$datos = file_get_contents("https://roman-company.com/TrailerMovilApiRest/view/evento.php/unico?id_evento=" . $id);
+$datos = file_get_contents("https://trailer.roman-company.com/TrailerMovilApiRest/view/evento.php/unico?id_evento=" . $id);
 $products = json_decode($datos, true)['datos'][0];
 
 $nombre = $products['nombre'];
@@ -18,7 +18,7 @@ $estado = $products['estado'];
 $contador_cards = 0;
 
 // JSON VARIABLES 
-$data = file_get_contents('https://roman-company.com/TrailerMovilApiRest/view/evento.php?estado=active');
+$data = file_get_contents('https://trailer.roman-company.com/TrailerMovilApiRest/view/evento.php?estado=active');
 $eventos = json_decode($data)->datos;
 
 include_once 'layout/header.php';

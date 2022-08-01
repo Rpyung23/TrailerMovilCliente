@@ -13,12 +13,14 @@ $email = $_SESSION["email"];
 $total = 0;
 
 // Obtenemos informacion del carrito
-$urlMenu = "https://roman-company.com/TrailerMovilApiRest/view/cliente_menu_tem.php?email=$email";
+$urlMenu = "https://trailer.roman-company.com/TrailerMovilApiRest/view/cliente_menu_tem.php?email=$email";
 $data = file_get_contents($urlMenu);
 $articulos = json_decode($data, true)["datos"];
 
 // Obtenemos informacion del usuario
-$dataClient = get_data_client($email);
+$dataClientUrl = file_get_contents("https://trailer.roman-company.com/TrailerMovilApiRest/view/cliente.php?email=$email");
+$dataClient = json_decode($dataClientUrl, true)["datos"];
+
 ?>
 <script src="js/jquery-3.6.0.js"></script>
 <main class="container-lg mt-5 p-3 px-4 main-order-container" id="resumenOrden">
@@ -32,21 +34,21 @@ $dataClient = get_data_client($email);
             </div>
             <div class="row">
                 <p class="col-3 color-fff label-infor"">Nombres:</p>
-                <p class=" col-8 color-fff"><?php echo $dataClient["nombres"] ?></p>
+                <p class=" col-8 color-fff"><?php echo $dataClient[0]["nombres"]; ?></p>
             </div>
             <div class="row">
                 <p class="col-3 color-fff label-infor"">Cedula:</p>
-                <p class=" col-8 color-fff"><?php echo $dataClient["dni_ruc"]; ?></p>
+                <p class=" col-8 color-fff"><?php echo $dataClient[0]["dni_ruc"]; ?></p>
             </div>
         </div>
         <div class="col-12 col-sm-6">
             <div class="row">
                 <p class="col-3 color-fff label-infor"">Dirección:</p>
-                <p class=" col-8 color-fff"><?php echo $dataClient["direccion"]; ?></p>
+                <p class=" col-8 color-fff"><?php echo $dataClient[0]["direccion"]; ?></p>
             </div>
             <div class="row">
                 <p class="col-3 color-fff label-infor"">Teléfono:</p>
-                <p class=" col-8 color-fff"><?php echo $dataClient["telefono"]; ?></p>
+                <p class=" col-8 color-fff"><?php echo $dataClient[0]["telefono"]; ?></p>
             </div>
             <div class="row">
                 <p class="col-3 color-fff label-infor"">Correo:</p>
@@ -158,7 +160,7 @@ $dataClient = get_data_client($email);
     function saveBD()
     {
         $.ajax({
-            url:"https://roman-company.com/TrailerMovilApiRest/view/cliente.php/compra",
+            url:"https://trailer.roman-company.com/TrailerMovilApiRest/view/cliente.php/compra",
             method:"POST",
             data:JSON.stringify({
                 email:'<?php echo $_SESSION["email"];?>',
