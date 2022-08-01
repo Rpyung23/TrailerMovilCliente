@@ -1,96 +1,58 @@
 <?php
-session_start();
-if (isset($_SESSION["session"])) {
-   if ($_SESSION["session"] == "active") {
-      header("location: home.php");
-   }
-}
+$data = file_get_contents('https://trailer.roman-company.com/TrailerMovilApiRest/view/evento.php?estado=active');
+$eventos = json_decode($data)->datos;
+
+include_once 'layout/header.php';
+include_once 'layout/navegacion.php';
+
 ?>
-<!DOCTYPE html>
-<html lang="es">
 
-<head>
-   <meta charset="UTF-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-   <link rel="stylesheet" href="./css/login_styles.css" />
-   <title>Iniciar Sesión</title>
-</head>
-
-<body>
-   <div class="container">
-      <div class="forms-container">
-         <div class="signin-signup">
-            <!-- form iniciar -->
-            <form id="formIniciarSesion" class="sign-in-form" autocomplete="off">
-               <h2 class="title">Iniciar Sesión </h2>
-               <div class="input-field">
-                  <i class="fas fa-envelope"></i>
-                  <input type="email" id="email_login" required placeholder="Email" autocomplete="off" />
-               </div>
-               <div class="input-field">
-                  <i class="fas fa-lock"></i>
-                  <input type="password" id="pass_login" required placeholder="Contraseña" autocomplete="off" />
-               </div>
-               <input type="submit" value="Iniciar Sesión" class="btn solid" />
-            </form>
-            <!-- form registrar -->
-            <form class="sign-up-form" id="r_formulario" autocomplete="off">
-               <h2 class="title">Registrate</h2>
-               <div class="input-field">
-                  <i class="fas fa-user"></i>
-                  <input id="r_name" type="text" placeholder="Nombres" autocomplete="off" pattern="[a-zA-Z ]{2,254}" required />
-               </div>
-               <div class="input-field">
-                  <i class="fas fa-envelope"></i>
-                  <input id="r_email" type="email" placeholder="Email" autocomplete="off" required />
-               </div>
-               <div class="input-field">
-                  <i class="fas fa-lock"></i>
-                  <input id="r_password" type="password" autocomplete="off" placeholder="Contraseña" required />
-               </div>
-               <div class="input-field">
-                  <i class="fas fa-phone-alt"></i>
-                  <input id="r_tel" type="tel" placeholder="Telefono" autocomplete="off" pattern="[0-9]{10}" required />
-               </div>
-               <input type="submit" class="btn" value="Registrarse" />
-            </form>
-         </div>
-      </div>
-
-      <div class="panels-container">
-         <div class="panel left-panel">
-            <div class="content">
-               <div class="ctn-imagen-login">
-                  <img src="./img/logo-text.png" alt="">
-               </div>
-               <h3>Eres nuevo?</h3>
-               <p>
-                  Registrate en nuestra página para obtener más información acerca de los eventos que te podemos ofrecer
-               </p>
-               <button class="btn transparent" id="sign-up-btn">
-                  Registrarse
-               </button>
-            </div>
-         </div>
-         <div class="panel right-panel">
-            <div class="content">
-               <div class="ctn-imagen-login">
-                  <img src="./img/logo-text.png" alt="">
-               </div>
-               <h3>Ya tienes cuenta?</h3>
-               <p>
-                  Inicia sesión en nuestra página para obtener más información acerca de los eventos que te podemos ofrecer
-               </p>
-               <button class="btn transparent" id="sign-in-btn">
-                  Iniciar Sesión
-               </button>
-            </div>
-         </div>
-      </div>
-   </div>
-   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   <script src="./js/index.js"></script>
-</body>
-
-</html>
+<!-- Paralax  -->
+<section class="contenedor">
+    <div class="paralax">
+        <div class="contenido-paralax">
+            <h1>Pagina de Eventos</h1>
+            <p>Ven y disfruta de los mejores eventos </p>
+        </div>
+    </div>
+</section>
+<!-- Contenedor card -->
+<div class="container-fluid py-5 bg-dark">
+    <div class="container">
+        <div class="row g-5 d-flex justify-content-center justify-content-md-evenly" id="container-cards">
+            <?php foreach ($eventos as $evento) :
+                $fecha = explode(" ", $evento->fecha_evento)[1];
+                $id_evento = base64_encode($evento->id_evento);
+                $precio = number_format($evento->precio, 2);
+            ?>
+                <!-- card -->
+                <div class="col-12 col-sm-6 col-md-5 col-lg-4">
+                    <div class="card m-auto border-0">
+                        <div class="image-wrapper-card">
+                            <img src="<?php echo $evento->foto; ?>" alt="<?php echo $evento->nombre; ?>">
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="card-title"><?php echo $evento->nombre; ?></h3>
+                            <p class="event-price-card">
+                                <i class="bi bi-currency-dollar"></i>
+                                <strong><?php echo $precio ?></strong>
+                            </p>
+                            <p><i class="bi bi-calendar-date"></i> <strong><?php echo $fecha; ?></strong></p>
+                            <p><i class="bi bi-geo-alt-fill"></i> <strong><?php echo $evento->ubicacion; ?></strong></p>
+                            <a href="<?php echo "./detalleEventos.php?id=" . $id_evento; ?>" class="btn btn-card btn-purple">Ver más</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- card /> -->
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+<div class="container-button-fixed">
+    <button class="btn-float btn-purple" id="btn-top"><i class="bi bi-caret-up-fill"></i></button>
+</div>
+<!-- Contenedor card />-->
+</script>
+<?php
+include_once 'layout/footer.php';
+?>

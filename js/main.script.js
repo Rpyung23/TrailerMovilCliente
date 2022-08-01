@@ -140,17 +140,21 @@ function sendRequestAddCart(data, btnAddCart) {
 }
 
 function getItemsCartAPI() {
-    const url = `https://trailer.roman-company.com/TrailerMovilApiRest/view/cliente_menu_tem.php?email=${user_credencials.email}`;
-    fetch(url)
-        .then(response => response.json())
-        .then(({ datos }) => {
-            if (datos != null) {
-                addItemsCart(datos)
-            } else {
-                addItemsCart([])
-            }
-        })
-        .catch(console.log);
+    try{
+        const url = `https://trailer.roman-company.com/TrailerMovilApiRest/view/cliente_menu_tem.php?email=${user_credencials.email}`;
+        fetch(url)
+            .then(response => response.json())
+            .then(({ datos }) => {
+                if (datos != null) {
+                    addItemsCart(datos)
+                } else {
+                    addItemsCart([])
+                }
+            })
+            .catch(console.log);
+    }catch (e) {
+        addItemsCart([])
+    }
 }
 
 function addItemsCart(items) {

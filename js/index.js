@@ -57,7 +57,7 @@ async function sendDataRest(data) {
    });
    const response = await request.json();
    if (response.status == 200) {
-      location.href = "home.php";
+      location.href = "index.php";
    } else {
       Swal.fire(
          'Oppss!',

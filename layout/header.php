@@ -1,12 +1,12 @@
 <?php
-    session_start();    
-    if(isset($_SESSION["session"])){
+    session_start();
+    /*if(isset($_SESSION["session"])){
         if($_SESSION["session"] != "active"){
-            header("location: index.php");
+            header("location: login.php");
         }
     }else{
-        header("location: index.php");
-    }
+        header("location: login.php");
+    }*/
 ?>
 <!DOCTYPE html>
 <html lang="es">

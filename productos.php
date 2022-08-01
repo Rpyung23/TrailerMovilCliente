@@ -62,8 +62,16 @@ $productos = json_decode($data)->datos;
     </div>
 </section>
 <div class="container-button-fixed two-button">
-    <button class="btn-float btn-purple" id="btn-cart" data-pushbar-target="right"><i class="bi bi-cart-fill"></i></button>
+
     <button class="btn-float btn-purple" id="btn-top"><i class="bi bi-caret-up-fill"></i></button>
+    <?php if(isset($_SESSION["session"]))
+    {
+        if($_SESSION["session"] == "active") {
+
+            ?>  <button class="btn-float btn-purple" id="btn-cart" data-pushbar-target="right"><i class="bi bi-cart-fill"></i></button><?php } else{}
+    }?>
+
+
 </div>
 <?php
 include_once "carritoDeCompras.php";
