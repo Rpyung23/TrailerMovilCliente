@@ -188,11 +188,12 @@ include_once 'layout/navegacion.php';
 
             createOrder: function(data, actions) 
             {
-                cantBoletos = document.getElementById('cantidad-asientos-event').value
+                cantBoletos = document.getElementById('cantidad-asientos-event').innerText
                 let precioEvento = '<?php echo $precio;?>'
-               
-                precio = parseFloat(cantBoletos) * parseFloat(precioEvento)
-            
+                console.log("cantBoletos :  "+cantBoletos)
+
+                precio = cantBoletos * parseFloat(precioEvento)
+                console.log("precio :  "+precio)
 
                 return actions.order.create({
                     purchase_units: [{"amount":{"currency_code":"USD","value":precio.toFixed(2)}}]
@@ -239,8 +240,12 @@ include_once 'layout/navegacion.php';
          * in evento_ int,in email varchar(70),in total decimal(10,2),in cantBoletos_ smallint,
                                        in recibopaypal text
          * **/
+        //var url = "https://trailer.roman-company.com/TrailerMovilApiRest/view/compras.php"
+
+        var url = "http://localhost/TrailerMovilApiRest/view/compras.php"
+
         $.ajax({
-            url:"https://trailer.roman-company.com/TrailerMovilApiRest/view/cliente.php/compra",
+            url: url,
             method:"POST",
             data:JSON.stringify({
                 email:'<?php echo $_SESSION["email"];?>',
@@ -267,7 +272,7 @@ include_once 'layout/navegacion.php';
                     confirmButtonText: 'Seguir Comprando'
                 }).then((result) =>
                 {
-                    window.location.href = "./productos.php"
+                    window.location.href = "./index.php"
                 })
 
             }else{
@@ -278,7 +283,10 @@ include_once 'layout/navegacion.php';
                 )
             }
 
-        }).fail(function(error){
+        }).fail(function(error)
+        {
+            console.log("ERROR REGISTRO BD")
+            console.log(error)
             alert('ERROR SERVER ROMMAN COMPANY')
         })
     }
