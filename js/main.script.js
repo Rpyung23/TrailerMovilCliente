@@ -25,8 +25,8 @@ function initFunctions() {
     scrollToTop();
 
     getDataProductCard();
-    getItemsCartAPI();
-    deleteItemCart();
+    //getItemsCartAPI();
+    //deleteItemCart();
 
     previewPhotoProfile();
     uploadProfilePhoto();
@@ -68,10 +68,17 @@ function OpacityParallax() {
 /* -------------------------------------------------------------------------- */
 /*                       funciones de seccion productos                       */
 /* -------------------------------------------------------------------------- */
-function addContadorProducts(event) {
+function addContadorProducts(event,disponible) 
+{
+    console.log("subiendo")
     text = event.previousElementSibling;
     number = Number.parseInt(text.innerText);
-    number++;
+    console.log(number)
+    if(number < disponible)
+    {
+        number++;
+    }
+
     text.innerText = number;
 }
 
@@ -201,7 +208,7 @@ function deleteItemCart() {
     $containerItemsCart.addEventListener('click', async e => {
         if (e.target.classList.contains('delete-item')) {
             const idMenu = Number.parseInt(e.target.dataset.idItemMenu);
-            const url = `https://roman-company.com/TrailerMovilApiRest/view/cliente_menu_tem.php`;
+            const url = `https://trailer.roman-company.com/TrailerMovilApiRest/view/cliente_menu_tem.php`;
             const data = {
                 "email": user_credencials.email,
                 "menu": idMenu

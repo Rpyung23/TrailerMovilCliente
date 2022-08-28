@@ -1,5 +1,5 @@
 <?php
-include_once 'rest/core_functions.php';
+
 include_once 'layout/header.php';
 include_once 'layout/navegacion.php';
 

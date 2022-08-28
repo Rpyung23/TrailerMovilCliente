@@ -37,14 +37,15 @@
                             </li><?php } else{}
                     }?>
 
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="./home.php">Eventos</a></li>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="./productos.php">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="./index.php">Eventos</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="./reservas.php">Reservas</a></li>
 
                     <?php
                     if(!isset($_SESSION["session"]))
                     {
 
-                    ?> <li class="nav-item"><a class="nav-link active" href="./login.php">Login</a></li>
+                    ?>
+                        <li class="nav-item"><a class="nav-link active" href="./login.php">Login</a></li>
                     <?php } ?>
 
                     <?php if(isset($_SESSION["session"]))

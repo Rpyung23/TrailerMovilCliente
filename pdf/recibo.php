@@ -8,7 +8,12 @@ if (isset($_GET["f"])) {
     $datos = json_decode($datos, true);
 
     // datos del recibo 
-    $data = file_get_contents("https://trailer.roman-company.com/TrailerMovilApiRest/view/compras.php/detalle?factura=" . $datos[0] . "&paypal=" . $datos[1] . "");
+    //$data = file_get_contents("https://trailer.roman-company.com/TrailerMovilApiRest/view/compras.php/detalle?factura=" . $datos[0] . "&paypal=" . $datos[1] . "");
+    
+
+    $data = file_get_contents("http://localhost/TrailerMovilApiRest/view/compras.php/detalle?factura=" . $datos[0] . "&paypal=" . $datos[1] . "");
+    
+
     $recibos = json_decode($data, true)['datos'];
     $recibos = ($recibos == null) ? [] : $recibos;
 } else {
@@ -98,9 +103,11 @@ $total = 0;
     <div class="contenedor">
         <h1 class="title">TRAILER MOVIL EVENTS</h1>
         <p">Telf: 032987775</p>
-            <p><?php echo $recibos[0]['fecha_registro']; ?></p>
+            <p><?php echo $recibos[0]['fechaRegistro']; ?></p>
             <p>-------------------------------------</p>
-            <p style="">Recibo N° <?php echo $recibos[0]['id_factura']; ?> <span> </span></p>
+            <p style="">Recibo N° <?php echo $recibos[0]['idFactura']; ?> <span> </span></p>
+            <p style="">Nombres :  <?php echo $recibos[0]['nombres']; ?> <span> </span></p>
+            <p style="">Evento : <?php echo $recibos[0]['nombreEvento']; ?> <span> </span></p>
             <p>-------------------------------------</p>
             <table>
                 <thead>
@@ -112,12 +119,12 @@ $total = 0;
                 </thead>
                 <tbody>
                     <?php foreach ($recibos as $recibo) :
-                        $total += floatval($recibo['precioTU'])
+                        
                     ?>
                         <tr>
-                            <td class="p-th"><?php echo $recibo['cantidad'] ?></td>
-                            <td class="p-th pl-th"><?php echo $recibo['detalle'] ?></td>
-                            <td class="p-th pl-th">$ <?php echo $recibo['precioTU'] ?></td>
+                            <td class="p-th"><?php echo $recibo['cantBoletos'] ?></td>
+                            <td class="p-th pl-th"><?php echo $recibo['nombreEvento'] ?></td>
+                            <td class="p-th pl-th">$ <?php echo $recibo['precio'] ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -125,7 +132,7 @@ $total = 0;
             <p>-------------------------------------</p>
             <div class="contenedor-total">
                 <p class="texto-total">Total:</p>
-                <p class="valor-total">$ <?php echo number_format($total,2); ?></p>
+                <p class="valor-total">$ <?php echo number_format($recibo['totalFactura'],2); ?></p>
             </div>
             <p id="last-node">-------------------------------------</p>
     </div>

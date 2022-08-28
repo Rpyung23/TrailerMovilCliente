@@ -1,6 +1,5 @@
 <?php
-$data = file_get_contents('https://trailer.roman-company.com/TrailerMovilApiRest/view/evento.php?estado=active');
-$eventos = json_decode($data)->datos;
+
 
 include_once 'layout/header.php';
 include_once 'layout/navegacion.php';
@@ -16,6 +15,12 @@ include_once 'layout/navegacion.php';
         </div>
     </div>
 </section>
+
+<?php
+//$data = file_get_contents('https://trailer.roman-company.com/TrailerMovilApiRest/view/evento.php?estado=active');
+$data = file_get_contents('http://localhost/TrailerMovilApiRest/view/evento.php?estado=active');
+$eventos = json_decode($data)->datos;
+?>
 <!-- Contenedor card -->
 <div class="container-fluid py-5 bg-dark">
     <div class="container">
@@ -24,11 +29,19 @@ include_once 'layout/navegacion.php';
                 $fecha = explode(" ", $evento->fecha_evento)[1];
                 $id_evento = base64_encode($evento->id_evento);
                 $precio = number_format($evento->precio, 2);
+                $isDisponible = $evento->numBoletosDisponibles;
             ?>
                 <!-- card -->
                 <div class="col-12 col-sm-6 col-md-5 col-lg-4">
                     <div class="card m-auto border-0">
                         <div class="image-wrapper-card">
+                            <?php
+                                if($isDisponible == 0)
+                                {
+                             ?>
+                             <span class="badge bg-danger" style="position: absolute;z-index: 99;right: 0;margin: 5px;">AGOTADO</span>
+                             <?php } ?>
+
                             <img src="<?php echo $evento->foto; ?>" alt="<?php echo $evento->nombre; ?>">
                         </div>
                         <div class="card-body text-center">
