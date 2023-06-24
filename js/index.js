@@ -106,9 +106,9 @@ function getDataClient() {
    regis_form.addEventListener("submit", e => {
       e.preventDefault();
       const datos = {
-         "nombre": regis_form.r_name.value,
-         "email": regis_form.r_email.value,
-         "password": regis_form.r_password.value,
+         nombres: regis_form.r_name.value,
+         email: regis_form.r_email.value,
+         password: regis_form.r_password.value,
          telefono: regis_form.r_tel.value,
          direccion: "",
          foto: "",

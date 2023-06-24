@@ -18,7 +18,7 @@ include_once 'layout/navegacion.php';
                             <p>Disponible</p>
                             <label for="1" class="asiento">
                                 <input type="checkbox" disabled name="asientos" id="1" class="check">
-                                <img src="./img/chair.svg" class="img-chair">
+                                <img src="./images/chair.svg" class="img-chair">
                                 <span></span>
                                 <p>A-1</p>
                             </label>
@@ -27,7 +27,7 @@ include_once 'layout/navegacion.php';
                             <p>Seleccionado</p>
                             <label for="" class="asiento">
                                 <input type="checkbox" checked disabled name="asientos" class="check">
-                                <img src="./img/chair.svg" class="img-chair">
+                                <img src="./images/chair.svg" class="img-chair">
                                 <span></span>
                                 <p>A-2</p>
                             </label>
@@ -36,7 +36,7 @@ include_once 'layout/navegacion.php';
                             <p>Reservado</p>
                             <label for="" class="asiento reserved">
                                 <input type="checkbox" name="asientos" disabled class="check">
-                                <img src="./img/chair.svg" class="img-chair">
+                                <img src="./images/chair.svg" class="img-chair">
                                 <span></span>
                                 <p>A-3</p>
                             </label>

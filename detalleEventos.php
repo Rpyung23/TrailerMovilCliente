@@ -4,9 +4,9 @@ include_once 'layout/header.php';
 include_once 'layout/navegacion.php';
 
 $id =  base64_decode($_GET['id']);
-//$datos = file_get_contents("https://trailer.roman-company.com/TrailerMovilApiRest/view/evento.php/unico?id_evento=" . $id);
+$datosJson = file_get_contents("https://trailer.roman-company.com/TrailerMovilApiRest/view/evento.php/unico?id_evento=" . $id);
 
-$datosJson = file_get_contents("http://localhost/TrailerMovilApiRest/view/evento.php/unico?id_evento=". $id);
+//$datosJson = file_get_contents("http://localhost/TrailerMovilApiRest/view/evento.php/unico?id_evento=". $id);
 $products = json_decode($datosJson, true);
 //var_dump($products);
 $nombre = $products['datos']['nombre'];
@@ -22,9 +22,9 @@ $contador_cards = 0;
 $isDisponible = $products['datos']['numBoletosDisponibles'];
 
 // JSON VARIABLES 
-//$data = file_get_contents('https://trailer.roman-company.com/TrailerMovilApiRest/view/evento.php?estado=active');
+$data = file_get_contents('https://trailer.roman-company.com/TrailerMovilApiRest/view/evento.php?estado=active');
 
-$data = file_get_contents('http://localhost/TrailerMovilApiRest/view/evento.php?estado=active');
+//$data = file_get_contents('http://localhost/TrailerMovilApiRest/view/evento.php?estado=active');
 
 
 $eventos = json_decode($data)->datos;
@@ -240,9 +240,9 @@ include_once 'layout/navegacion.php';
          * in evento_ int,in email varchar(70),in total decimal(10,2),in cantBoletos_ smallint,
                                        in recibopaypal text
          * **/
-        //var url = "https://trailer.roman-company.com/TrailerMovilApiRest/view/compras.php"
+        var url = "https://trailer.roman-company.com/TrailerMovilApiRest/view/compras.php"
 
-        var url = "http://localhost/TrailerMovilApiRest/view/compras.php"
+        //var url = "http://localhost/TrailerMovilApiRest/view/compras.php"
 
         $.ajax({
             url: url,

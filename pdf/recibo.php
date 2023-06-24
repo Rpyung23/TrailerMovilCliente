@@ -8,10 +8,10 @@ if (isset($_GET["f"])) {
     $datos = json_decode($datos, true);
 
     // datos del recibo 
-    //$data = file_get_contents("https://trailer.roman-company.com/TrailerMovilApiRest/view/compras.php/detalle?factura=" . $datos[0] . "&paypal=" . $datos[1] . "");
+    $data = file_get_contents("https://trailer.roman-company.com/TrailerMovilApiRest/view/compras.php/detalle?factura=" . $datos[0] . "&paypal=" . $datos[1] . "");
     
 
-    $data = file_get_contents("http://localhost/TrailerMovilApiRest/view/compras.php/detalle?factura=" . $datos[0] . "&paypal=" . $datos[1] . "");
+    //$data = file_get_contents("http://localhost/TrailerMovilApiRest/view/compras.php/detalle?factura=" . $datos[0] . "&paypal=" . $datos[1] . "");
     
 
     $recibos = json_decode($data, true)['datos'];
@@ -146,7 +146,12 @@ $html = ob_get_clean();
 // echo $html;
 // die;
 
-require_once 'dompdf/autoload.inc.php';
+if(file_exists('dompdf/autoload.inc.php'))
+{
+    require_once 'dompdf/autoload.inc.php';
+}else{
+    require_once './dompdf/autoload.inc.php';
+}
 
 use Dompdf\Dompdf;
 
