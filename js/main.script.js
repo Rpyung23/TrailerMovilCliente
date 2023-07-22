@@ -120,7 +120,7 @@ function getDataProductCard() {
 }
 
 function sendRequestAddCart(data, btnAddCart) {
-    const url = "https://trailer.roman-company.com/TrailerMovilApiRest/view/cliente_menu_tem.php";
+    const url = "https://rest.roman-company.com/view/cliente_menu_tem.php";
     btnAddCart.setAttribute('disabled', "true");
     //invocamos a la api
     fetch(url, {
@@ -148,7 +148,7 @@ function sendRequestAddCart(data, btnAddCart) {
 
 function getItemsCartAPI() {
     try{
-        const url = `https://trailer.roman-company.com/TrailerMovilApiRest/view/cliente_menu_tem.php?email=${user_credencials.email}`;
+        const url = `https://rest.roman-company.com/view/cliente_menu_tem.php?email=${user_credencials.email}`;
         fetch(url)
             .then(response => response.json())
             .then(({ datos }) => {
@@ -208,7 +208,7 @@ function deleteItemCart() {
     $containerItemsCart.addEventListener('click', async e => {
         if (e.target.classList.contains('delete-item')) {
             const idMenu = Number.parseInt(e.target.dataset.idItemMenu);
-            const url = `https://trailer.roman-company.com/TrailerMovilApiRest/view/cliente_menu_tem.php`;
+            const url = `https://rest.roman-company.com/view/cliente_menu_tem.php`;
             const data = {
                 "email": user_credencials.email,
                 "menu": idMenu

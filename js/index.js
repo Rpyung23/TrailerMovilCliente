@@ -15,7 +15,7 @@ sign_in_btn.addEventListener("click", () => {
 
 formIniciarSesion.addEventListener('submit', async e => {
    e.preventDefault();
-   const url = "https://trailer.roman-company.com/TrailerMovilApiRest/view/login.php";
+   const url = "https://rest.roman-company.com/view/login.php";
    const data = {
       codigo: "cliente",
       email: formIniciarSesion.email_login.value,
@@ -68,7 +68,7 @@ async function sendDataRest(data) {
 }
 
 function clientRegister(data) {
-   url = "https://trailer.roman-company.com/TrailerMovilApiRest/view/cliente.php";
+   url = "https://rest.roman-company.com/view/cliente.php";
    fetch(url, {
       method: 'POST',
       body: JSON.stringify(data),
