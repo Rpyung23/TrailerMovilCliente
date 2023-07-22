@@ -1,7 +1,7 @@
 <?php
 include_once 'layout/header.php';
 include_once 'layout/navegacion.php';
-$data = file_get_contents('https://trailer.roman-company.com/TrailerMovilApiRest/view/menu.php?estado=active');
+$data = file_get_contents('https://rest.roman-company.com/view/menu.php?estado=active');
 $productos = json_decode($data)->datos;
 ?>
 <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">

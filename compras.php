@@ -1,7 +1,7 @@
 <?php
 include_once 'layout/header.php';
 include_once 'layout/navegacion.php';
-$data = file_get_contents('https://trailer.roman-company.com/TrailerMovilApiRest/view/compras.php/general?email='.$_SESSION['email'].'');
+$data = file_get_contents('https://rest.roman-company.com/view/compras.php/general?email='.$_SESSION['email'].'');
 //$data = file_get_contents('http://localhost/TrailerMovilApiRest/view/compras.php/general?email='.$_SESSION['email'].'');
 $compras = json_decode($data, true)['datos'];
 $compras =($compras== null)?[]:$compras;

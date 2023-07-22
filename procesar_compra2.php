@@ -13,12 +13,12 @@ $email = $_SESSION["email"];
 $total = 0;
 
 // Obtenemos informacion del carrito
-$urlMenu = "https://trailer.roman-company.com/TrailerMovilApiRest/view/cliente_menu_tem.php?email=$email";
+$urlMenu = "https://rest.roman-company.com/view/cliente_menu_tem.php?email=$email";
 $data = file_get_contents($urlMenu);
 $articulos = json_decode($data, true)["datos"];
 
 // Obtenemos informacion del usuario
-$dataClientUrl = file_get_contents("https://trailer.roman-company.com/TrailerMovilApiRest/view/cliente.php?email=$email");
+$dataClientUrl = file_get_contents("https://rest.roman-company.com/view/cliente.php?email=$email");
 $dataClient = json_decode($dataClientUrl, true)["datos"];
 
 ?>
@@ -160,7 +160,7 @@ $dataClient = json_decode($dataClientUrl, true)["datos"];
     function saveBD()
     {
         $.ajax({
-            url:"https://trailer.roman-company.com/TrailerMovilApiRest/view/cliente.php/compra",
+            url:"https://rest.roman-company.com/view/cliente.php/compra",
             method:"POST",
             data:JSON.stringify({
                 email:'<?php echo $_SESSION["email"];?>',

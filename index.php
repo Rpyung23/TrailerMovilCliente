@@ -17,7 +17,7 @@ include_once 'layout/navegacion.php';
 </section>
 
 <?php
-$data = file_get_contents('https://trailer.roman-company.com/TrailerMovilApiRest/view/evento.php?estado=active');
+$data = file_get_contents('https://rest.roman-company.com/view/evento.php?estado=active');
 //$data = file_get_contents('http://localhost/TrailerMovilApiRest/view/evento.php?estado=active');
 $eventos = json_decode($data)->datos;
 ?>

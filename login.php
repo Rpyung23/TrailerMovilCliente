@@ -51,7 +51,7 @@ if (isset($_SESSION["session"])) {
                </div>
                <div class="input-field">
                   <i class="fas fa-phone-alt"></i>
-                  <input id="r_tel" type="tel" placeholder="Telefono" autocomplete="off" pattern="[0-9]{10}" required />
+                  <input id="r_tel" type="tel" placeholder="Telefono (+593 XXXXXXXXX)" autocomplete="off" pattern="[0-9]{10}" required />
                </div>
                <input type="submit" class="btn" value="Registrarse" />
             </form>
