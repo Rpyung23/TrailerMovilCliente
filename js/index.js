@@ -30,6 +30,7 @@ formIniciarSesion.addEventListener('submit', async e => {
          }
       })
       const response = await request.json();
+      console.log(response)
       if (response.status == 200) {
          sendDataRest(response.datos)
       } else {
@@ -67,36 +68,7 @@ async function sendDataRest(data) {
    }
 }
 
-function clientRegister(data) {
-   url = "https://rest.roman-company.com/view/cliente.php";
-   fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-         'Content-Type': 'application/json'
-      }
-   })
-      .then(res => res.json())
-      .then(response => {
-         const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-               toast.addEventListener('mouseenter', Swal.stopTimer)
-               toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-         })
 
-         Toast.fire({
-            icon: 'success',
-            title: 'Registrado con Éxito'
-         })
-      })
-      .catch(console.log);
-}
 
 function getDataClient() {
    const regis_form = document.getElementById("r_formulario");
