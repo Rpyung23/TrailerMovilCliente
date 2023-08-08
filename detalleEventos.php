@@ -101,8 +101,10 @@ include_once 'layout/navegacion.php';
                     </div>
 
                     <?php
-                    if ($isDisponible > 0) {
+
+                    if ($isDisponible > 0 && isset($_SESSION["session_trailer_cliente"])) {
                     ?>
+
                         <div id="paypal-button-container"></div>
 
 
