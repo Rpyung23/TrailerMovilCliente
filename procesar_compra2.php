@@ -9,7 +9,7 @@ if (!isset($_SESSION["number_order"])) {
     $num_order = $_SESSION["number_order"];
 }
 
-$email = $_SESSION["email"];
+$email = $_SESSION["email_trailer_cliente"];
 $total = 0;
 
 // Obtenemos informacion del carrito
@@ -52,7 +52,7 @@ $dataClient = json_decode($dataClientUrl, true)["datos"];
             </div>
             <div class="row">
                 <p class="col-3 color-fff label-infor"">Correo:</p>
-                <p class=" col-8 color-fff"><?php echo $_SESSION["email"]; ?></p>
+                <p class=" col-8 color-fff"><?php echo $_SESSION["email_trailer_cliente"]; ?></p>
             </div>
         </div>
     </div>
@@ -163,7 +163,7 @@ $dataClient = json_decode($dataClientUrl, true)["datos"];
             url:"https://rest.roman-company.com/view/cliente.php/compra",
             method:"POST",
             data:JSON.stringify({
-                email:'<?php echo $_SESSION["email"];?>',
+                email:'<?php echo $_SESSION["email_trailer_cliente"];?>',
                 estado:1,
                 tipo:1,
                 recibo:compra})

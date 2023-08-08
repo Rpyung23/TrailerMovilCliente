@@ -64,9 +64,9 @@ $productos = json_decode($data)->datos;
 <div class="container-button-fixed two-button">
 
     <button class="btn-float btn-purple" id="btn-top"><i class="bi bi-caret-up-fill"></i></button>
-    <?php if(isset($_SESSION["session"]))
+    <?php if(isset($_SESSION["session_trailer_cliente"]))
     {
-        if($_SESSION["session"] == "active") {
+        if($_SESSION["session_trailer_cliente"] == "active") {
 
             ?>  <button class="btn-float btn-purple" id="btn-cart" data-pushbar-target="right"><i class="bi bi-cart-fill"></i></button><?php } else{}
     }?>

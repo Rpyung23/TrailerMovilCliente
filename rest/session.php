@@ -13,9 +13,9 @@ if ($reque == 'POST')
 {
     try {
         session_start();
-        $_SESSION['email'] = $json['email'];
-        $_SESSION['name'] = $json['nombres'];
-        $_SESSION["session"] = "active";
+        $_SESSION['email_trailer_cliente'] = $json['email'];
+        $_SESSION['name_trailer_cliente'] = $json['nombres'];
+        $_SESSION["session_trailer_cliente"] = "active";
 
         $array = array("status"=>200);
         echo json_encode(array_map('utf8_encode',$array));

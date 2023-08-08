@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (isset($_SESSION["session"])) {
-   if ($_SESSION["session"] == "active") {
+if (isset($_SESSION["session_trailer_cliente"])) {
+   if ($_SESSION["session_trailer_cliente"] == "active") {
       header("location: index.php");
    }
 }

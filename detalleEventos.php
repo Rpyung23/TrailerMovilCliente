@@ -33,6 +33,14 @@ include_once 'layout/header.php';
 include_once 'layout/navegacion.php';
 
 ?>
+
+<script>
+    const CLIENTE_ID = "AUqHrV6BC20KP-UwuraLDD9QlGxMzlRwsQNsMekae06H7-OvGH_0veOCvtsu1SbrwKvyhLtzmc5z80Us"
+    const SECRET_KEY = "ENCdWtRf8J-MxoEAUk9ZJuz-pqPod8j9suqnxP20p5knUhQX12mureBig_x79FGRnEt4n67N06k4m70A"
+    const PAYPAL_URL = "https://sandbox.paypal.com"
+</script>
+
+
 <script src="js/jquery-3.6.0.js"></script>
 <!-- Product section-->
 <section id="complete-detail" class="py-5 text-white">
@@ -40,14 +48,14 @@ include_once 'layout/navegacion.php';
         <div class="container px-4 px-lg-5 ">
             <div class="row gx-4 gx-lg-5 align-items-center">
                 <div class="col-md-6">
-                <?php
-                                if($isDisponible == 0)
-                                {
-                             ?>
-                             <span class="badge bg-danger" style="position: absolute;z-index: 99;margin: 5px;">AGOTADO</span>
-                             <?php } ?>
+                    <?php
+                    if ($isDisponible == 0) {
+                    ?>
+                        <span class="badge bg-danger" style="position: absolute;z-index: 99;margin: 5px;">AGOTADO</span>
+                    <?php } ?>
 
-                   <img class="card-img-top mb-5 mb-md-0" src="<?php echo $foto ?>" alt="<?php echo $nombre; ?>" /></div>
+                    <img class="card-img-top mb-5 mb-md-0" src="<?php echo $foto ?>" alt="<?php echo $nombre; ?>" />
+                </div>
                 <div class="col-md-6">
 
 
@@ -70,39 +78,42 @@ include_once 'layout/navegacion.php';
                         <p class="lead"><?php echo $detalle ?></p>
 
                         <?php
-                                if($isDisponible > 0)
-                                {
-                             ?>
-                             <div class="d-flex end_buttons">
-                            <div class="col-1 boton_contador_eventos " onclick="subtractContadorProducts(this)">
-                                <i class="bi bi-chevron-left"></i>
+                        if ($isDisponible > 0) {
+                        ?>
+                            <div class="d-flex end_buttons">
+                                <div class="col-1 boton_contador_eventos " onclick="subtractContadorProducts(this)">
+                                    <i class="bi bi-chevron-left"></i>
+                                </div>
+                                <p class="text-cont col-1" id="cantidad-asientos-event">1</p>
+                                <div class="col-1 boton_contador_eventos" onclick="addContadorProducts(this,<?php echo $isDisponible; ?>)">
+                                    <i class="bi bi-chevron-right"></i>
+                                </div>
+
+
+
+                            <?php } ?>
+
+
+
+
+
                             </div>
-                            <p class="text-cont col-1" id="cantidad-asientos-event">1</p>
-                            <div class="col-1 boton_contador_eventos" onclick="addContadorProducts(this,<?php echo $isDisponible; ?>)">
-                                <i class="bi bi-chevron-right"></i>
-                            </div>
-
-              
-
-                             <?php } ?>
-
-                        
                     </div>
+
+                    <?php
+                    if ($isDisponible > 0) {
+                    ?>
+                        <div id="paypal-button-container"></div>
+
+
+
+                    <?php } ?>
                 </div>
             </div>
-        </div>
 </section>
 
 
-<?php
-                                if($isDisponible > 0)
-                                {
-                             ?>
-                             <div id="paypal-button-container"></div>
 
-              
-
-                             <?php } ?>
 
 
 
@@ -125,12 +136,11 @@ include_once 'layout/navegacion.php';
                     <div class="col-12 col-sm-6 col-md-5 col-lg-3">
                         <div class="card m-auto border-0">
                             <div class="image-wrapper-card">
-                            <?php
-                                if($isDisponibleMore == 0)
-                                {
-                             ?>
-                             <span class="badge bg-danger" style="position: absolute;z-index: 99;right: 0;margin: 5px;">AGOTADO</span>
-                             <?php } ?>
+                                <?php
+                                if ($isDisponibleMore == 0) {
+                                ?>
+                                    <span class="badge bg-danger" style="position: absolute;z-index: 99;right: 0;margin: 5px;">AGOTADO</span>
+                                <?php } ?>
 
                                 <img src="<?php echo $evento->foto; ?>" alt="<?php echo $evento->nombre; ?>">
                             </div>
@@ -160,21 +170,21 @@ include_once 'layout/navegacion.php';
 </section>
 
 <style>
-    #paypal-button-container{
-        display:flex;
-        margin-top:1.5rem;
+    #paypal-button-container {
+        display: flex;
+        margin-top: 1.5rem;
         justify-content: center;
     }
 </style>
 
-<script src="https://www.paypal.com/sdk/js?client-id=AW5M_dedVij9riC3tZgWWL7mY7oXZFbWmZiv3oVcwbpRhzt5AhHp_x9Q1WmVLRLiaxgXgkomfSZJvVPx&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AUqHrV6BC20KP-UwuraLDD9QlGxMzlRwsQNsMekae06H7-OvGH_0veOCvtsu1SbrwKvyhLtzmc5z80Us&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
 
 <script>
-    let compra  = null
+    let compra = null
     var precio = 0
     var cantBoletos = 0
 
-   
+
     function initPayPalButton() {
         console.log("INIT PAYPAL BUTTON")
         paypal.Buttons({
@@ -186,23 +196,26 @@ include_once 'layout/navegacion.php';
 
             },
 
-            createOrder: function(data, actions) 
-            {
+            createOrder: function(data, actions) {
                 cantBoletos = document.getElementById('cantidad-asientos-event').innerText
-                let precioEvento = '<?php echo $precio;?>'
-                console.log("cantBoletos :  "+cantBoletos)
+                let precioEvento = '<?php echo $precio; ?>'
+                console.log("cantBoletos :  " + cantBoletos)
 
                 precio = cantBoletos * parseFloat(precioEvento)
-                console.log("precio :  "+precio)
+                console.log("precio :  " + precio)
 
                 return actions.order.create({
-                    purchase_units: [{"amount":{"currency_code":"USD","value":precio.toFixed(2)}}]
+                    purchase_units: [{
+                        "amount": {
+                            "currency_code": "USD",
+                            "value": precio.toFixed(2)
+                        }
+                    }]
                 });
             },
 
             onApprove: function(data, actions) {
-                return actions.order.capture().then(function(orderData)
-                {
+                return actions.order.capture().then(function(orderData) {
                     console.log('COMPRA REALIZADA CON EXITO')
                     // Full available details
                     /*console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
@@ -215,8 +228,8 @@ include_once 'layout/navegacion.php';
                     /*const element = document.getElementById('paypal-button-container');
                     element.innerHTML = '';
                     element.innerHTML = '<h3>Thank you for your payment!</h3>';*/
-                    
-                    saveBD(precio,compra,cantBoletos)
+
+                    saveBD(precio, compra, cantBoletos)
 
 
 
@@ -225,8 +238,8 @@ include_once 'layout/navegacion.php';
                 });
             },
 
-            onError: function(err)
-            {
+            onError: function(err) {
+                console.log("ERROR PAYPAL")
                 compra = null
                 console.log(err);
             }
@@ -234,8 +247,8 @@ include_once 'layout/navegacion.php';
     }
     console.log("INIT PAYPAL")
     initPayPalButton();
-    function saveBD(total_,recibo_,boletos_)
-    {
+
+    function saveBD(total_, recibo_, boletos_) {
         /**
          * in evento_ int,in email varchar(70),in total decimal(10,2),in cantBoletos_ smallint,
                                        in recibopaypal text
@@ -246,36 +259,33 @@ include_once 'layout/navegacion.php';
 
         $.ajax({
             url: url,
-            method:"POST",
-            data:JSON.stringify({
-                email:'<?php echo $_SESSION["email"];?>',
-                evento : '<?php echo $id;?>',
-                total : total_,
-                cantBoletos : boletos_,
-                recibopaypal : recibo_
+            method: "POST",
+            data: JSON.stringify({
+                email: '<?php echo $_SESSION["email_trailer_cliente"]; ?>',
+                evento: '<?php echo $id; ?>',
+                total: total_,
+                cantBoletos: boletos_,
+                recibopaypal: recibo_
             })
-        }).done(function(datos)
-        {
+        }).done(function(datos) {
             var json_string = JSON.stringify(datos)
             var json_parse = JSON.parse(json_string)
 
-            if (json_parse.status == 200)
-            {
+            if (json_parse.status == 200) {
 
                 Swal.fire({
                     title: 'Pago realizado con éxito',
-                    text: "ID transacción #"+compra,
+                    text: "ID transacción #" + compra,
                     icon: 'success',
                     showCancelButton: false,
                     confirmButtonColor: '#61428f',
-                    allowOutsideClick:false,
+                    allowOutsideClick: false,
                     confirmButtonText: 'Seguir Comprando'
-                }).then((result) =>
-                {
+                }).then((result) => {
                     window.location.href = "./index.php"
                 })
 
-            }else{
+            } else {
                 Swal.fire(
                     'Error BASE DATOS ROMMAN COMPANY',
                     'No se ha podido guardar el pago.',
@@ -283,8 +293,7 @@ include_once 'layout/navegacion.php';
                 )
             }
 
-        }).fail(function(error)
-        {
+        }).fail(function(error) {
             console.log("ERROR REGISTRO BD")
             console.log(error)
             alert('ERROR SERVER ROMMAN COMPANY')
@@ -295,4 +304,3 @@ include_once 'layout/navegacion.php';
 <?php
 include_once 'layout/footer.php';
 ?>
-

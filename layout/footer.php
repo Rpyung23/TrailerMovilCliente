@@ -52,8 +52,8 @@
     <!-- Scrip Propios -->
     <script>
         const user_credencials = {
-            email: "<?php echo $_SESSION["email"] ?>",
-            nombre: "<?php echo $_SESSION["name"] ?>",
+            email: "<?php echo $_SESSION["email_trailer_cliente"] ?>",
+            nombre: "<?php echo $_SESSION["name_trailer_cliente"] ?>",
         }
     </script>
     <script src="js/main.script.js"></script>

@@ -8,7 +8,7 @@ if (isset($_GET["f"])) {
     $datos = json_decode($datos, true);
 
     // datos del recibo 
-    $data = file_get_contents("https://trailer.roman-company.com/TrailerMovilApiRest/view/compras.php/detalle?factura=" . $datos[0] . "&paypal=" . $datos[1] . "");
+    $data = file_get_contents("https://rest.roman-company.com/view/compras.php/detalle?factura=" . $datos[0] . "&paypal=" . $datos[1] . "");
     
 
     //$data = file_get_contents("http://localhost/TrailerMovilApiRest/view/compras.php/detalle?factura=" . $datos[0] . "&paypal=" . $datos[1] . "");
@@ -31,6 +31,7 @@ $total = 0;
     <!-- <link rel="stylesheet" href="../css/pdf.css"> -->
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="icon" type="image/x-icon" href="./img/favicon.png" />
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -102,7 +103,7 @@ $total = 0;
 <body>
     <div class="contenedor">
         <h1 class="title">TRAILER MOVIL EVENTS</h1>
-        <p">Telf: 032987775</p>
+        <p style="margin-top: 0.5rem;margin-bottom: 0.5rem;">+593998651935 +573204920762</p>
             <p><?php echo $recibos[0]['fechaRegistro']; ?></p>
             <p>-------------------------------------</p>
             <p style="">Recibo N° <?php echo $recibos[0]['idFactura']; ?> <span> </span></p>
@@ -174,5 +175,5 @@ $dompdf = new DOMPDF( );
 $dompdf->setPaper( array( 0 , 0 , 227.77 , 22 * $page_count ) );
 $dompdf->loadHtml( $html );
 $dompdf->render( );
-$dompdf->stream("archivo.pdf", array('Attachment' => false));
+$dompdf->stream("TICKET.pdf", array('Attachment' => false));
 ?>

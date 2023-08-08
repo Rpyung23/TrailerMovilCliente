@@ -56,7 +56,7 @@ include_once 'layout/navegacion.php';
                </div>
                <div class="col-md-5 mb-2">
                   <label for="inputEmail4" class="form-label">Email</label>
-                  <input type="email" readonly class="form-control" id="inputEmail4" value="<?php echo $_SESSION['email']; ?>">
+                  <input type="email" readonly class="form-control" id="inputEmail4" value="<?php echo $_SESSION['email_trailer_cliente']; ?>">
                </div>
             </div>
             <div class="d-flex flex-column flex-md-row  justify-content-around">
